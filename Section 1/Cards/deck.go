@@ -8,7 +8,7 @@ func newDeck() deck {
 	cards := deck{}
 
 	cardSuits := []string{"Hearts", "Diamonds", "Spades", "Clubs"}
-	cardValues := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
 	// underscores are for variables that we do not care about (rids errors of unused variables)
 	for _, cardSuit := range cardSuits {
@@ -20,8 +20,12 @@ func newDeck() deck {
 	return cards
 }
 
-func (cards deck) print () {
-	for _, card := range cards {
-		fmt.Println(card)
+func (d deck) print() {
+	for i, card := range d {
+		fmt.Println(i, card)
 	}
+}
+
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
