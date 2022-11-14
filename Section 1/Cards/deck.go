@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"os"
+	"strings"
+)
 
 type deck []string
 
@@ -26,6 +31,33 @@ func (d deck) print() {
 	}
 }
 
+func (d deck) toString() string {
+	deckString := strings.Join([]string(d), ",")
+
+	return deckString
+}
+
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+
+func (d deck) saveToFile(fileName string) error {
+	deckString := d.toString()
+	error := os.WriteFile(fileName, []byte(deckString), 0666)
+	return error
+
+}
+
+func newDeckFromFile(fileName string) (deck) {
+	bs, err := os.ReadFile(fileName)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	s := strings.Split(string(bs), ",")
+
+	return deck(s)
+
 }
