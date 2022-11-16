@@ -1,5 +1,9 @@
 package main
 
+import "fmt"
+
+// $: go run main.go <user written dependencies>.go
+
 func main() {
 	cards := newDeck()
 
@@ -7,5 +11,8 @@ func main() {
 
 	cardsFromFile := newDeckFromFile("cardsFromAFile.txt")
 	cardsFromFile.print()
+
+	fmt.Println("Shuffled cards from file:")
+	cardsFromFile.shuffle().print()
 
 }
