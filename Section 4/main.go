@@ -5,21 +5,30 @@ import "fmt"
 type person struct {
 	firstName string
 	lastName string
+	id identification
+}
+
+type identification struct {
+	idNumber int
+	passportNumber string
 }
 
 func main () {
-	dylan := person{firstName: "Dylan", lastName: "Graham"}
+	var dylan person
+	dylan.firstName = "Dylan"
+	dylan.lastName = "Graham"
+	dylan.id.idNumber = 9607881
+	dylan.id.passportNumber = "A330120"
+	fmt.Printf("%+v\n", dylan)
 
-	fmt.Println(dylan.lastName)
-	dylan.lastName = "New Last Name"
-	fmt.Println(dylan.lastName)
-
-	var zeroValuedPerson person
-	fmt.Println(zeroValuedPerson)
-
-	var alex person
-	alex.firstName = "Alex"
-	alex.lastName = "Anderson"
-	fmt.Printf("%+v", alex)
+	maguina := person{
+		firstName: "Maguina",
+		lastName: "Ramilo Henry",
+		id: identification{
+			idNumber: 123123,
+			passportNumber: "A33",
+		},
+	}
+	fmt.Printf("%+v",maguina)
 
 }
