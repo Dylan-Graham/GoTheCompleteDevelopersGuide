@@ -5,30 +5,39 @@ import "fmt"
 type person struct {
 	firstName string
 	lastName string
-	id identification
+	contactInfo
 }
 
-type identification struct {
-	idNumber int
-	passportNumber string
+type contactInfo struct {
+	email string
+	zip int
 }
 
 func main () {
 	var dylan person
 	dylan.firstName = "Dylan"
 	dylan.lastName = "Graham"
-	dylan.id.idNumber = 9607881
-	dylan.id.passportNumber = "A330120"
-	fmt.Printf("%+v\n", dylan)
+	dylan.updateFirstName("Dyl")
+	dylan.print()
+	// Notice name isn't updated due to reference
 
 	maguina := person{
 		firstName: "Maguina",
 		lastName: "Ramilo Henry",
-		id: identification{
-			idNumber: 123123,
-			passportNumber: "A33",
+		contactInfo: contactInfo{
+			email: "maguina@cool.com",
+			zip: 7441,
 		},
 	}
-	fmt.Printf("%+v",maguina)
+	maguina.print()
+
+}
+
+func (p person) updateFirstName(newFirstName string) {
+	p.firstName = newFirstName
+}
+
+func (p person) print() {
+	fmt.Printf("%+v\n", p)
 
 }
