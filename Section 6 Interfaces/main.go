@@ -7,6 +7,9 @@ type bot interface {
 }
 
 type englishBot struct {}
+type afrikaansBot struct {
+	customGreeting string
+}
 type spanishBot struct {}
 
 func main () {
@@ -16,6 +19,11 @@ func main () {
 	sbot := spanishBot{}
 	printGreeting(sbot);
 
+	abot := afrikaansBot{
+		customGreeting: "Aangename kennis!",
+	}
+	printGreeting(abot);
+
 }
 func printGreeting(b bot) {
 	fmt.Println(b.getGreeting())
@@ -23,10 +31,15 @@ func printGreeting(b bot) {
 
 func (eb englishBot) getGreeting() string {
 	// Custom logic
-	return "Hi there!"
+	return "Hello!"
 }
 
 func (sb spanishBot) getGreeting() string {
 	// Custom logic
 	return "Hola!"
+}
+
+func (ab afrikaansBot) getGreeting() string {
+	// Custom logic
+	return ab.customGreeting
 }
